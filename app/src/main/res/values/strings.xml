@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AppForSimbCourse</string>
+    <string name="login">E-mail</string>
+    <string name="password">Пароль</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="forgotten_passw">Забыли пароль?</string>
+    <string name="use_social_network">Использовать соцсети</string>
+    <string name="not_all_fields">Не все поля заполнены</string>
+
+
 </resources>
