@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "208856117025",
+    "firebase_url": "https://appforsimbcource.firebaseio.com",
+    "project_id": "appforsimbcource",
+    "storage_bucket": "appforsimbcource.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208856117025:android:b3273eedc3feca0c",
+        "android_client_info": {
+          "package_name": "com.example.dmitry.appforsimbcourse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208856117025-n9qk4abh2cq2gpug7m5tn19n9aaiudbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4ulkAGpIprDFwDG5Z2fyZcmO7HUBU7Bs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
