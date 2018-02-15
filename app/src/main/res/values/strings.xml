@@ -8,7 +8,7 @@
     <string name="not_all_fields">Не все поля заполнены</string>
     <string name="back">Назад</string>
     <string name="auth">Авторизация</string>
-
+    <string name="sign_in">Войти</string>
 
 
 </resources>

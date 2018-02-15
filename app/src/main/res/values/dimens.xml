@@ -22,6 +22,7 @@
     <dimen name="margin_top_use_social_net">16dp</dimen>
 
     <dimen name="margin_btn_sign_in">24dp</dimen>
+    <dimen name="margin_bottom_btn_sign_in">12dp</dimen>
 
     <dimen name="font_size_btn_sing_in">32sp</dimen>
     <dimen name="font_size_sign_up_forgotten">12sp</dimen>
