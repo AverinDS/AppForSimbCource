@@ -16,17 +16,16 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private val RC_SING_IN :Int = 16773
-    private val minLengthPassword:Int = 8
-    private lateinit var mAuth:FirebaseAuth
+    private val minLengthPassword: Int = 8
+    private lateinit var mAuth: FirebaseAuth
     private lateinit var buttonSignIn: Button
-    private lateinit var buttonSignUp:Button
-    private lateinit var login:EditText
-    private lateinit var passw:EditText
+    private lateinit var buttonSignUp: Button
+    private lateinit var login: EditText
+    private lateinit var passw: EditText
 
 
-    private var presenter:Presenter = Presenter()
-    private var isCorrectLog:Boolean = false
+    private var presenter: Presenter = Presenter()
+    private var isCorrectLog: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         this.mAuth = FirebaseAuth.getInstance()
 
-
         //пока что регистрацию сделаю на той же форме, что и авторизацию
         buttonSignUp.setOnClickListener({
             if (isCorrectLog.and(passw.text.toString().length >= this.minLengthPassword)) {
@@ -51,18 +49,15 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         buttonSignIn.setOnClickListener({
-            if (isCorrectLog.and(passw.text.toString().length >= this.minLengthPassword) ) {
+            if (isCorrectLog.and(passw.text.toString().length >= this.minLengthPassword)) {
                 presenter.login(this, mAuth, login.text.toString(), passw.text.toString())
-
-            }else {
+            } else {
                 Toast.makeText(this, "Неправильные данные", Toast.LENGTH_SHORT).show()
             }
         })
 
-
-        login.addTextChangedListener(object: TextWatcher {
+        login.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
@@ -81,9 +76,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        } )
-
-
+        })
     }
 
     override fun onStart() {
@@ -99,8 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    fun changeButtonSignIn(couldSignIn:Boolean) {
+    fun changeButtonSignIn(couldSignIn: Boolean) {
         when (couldSignIn) {
             true -> {
                 buttonSignIn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen))
@@ -109,9 +101,11 @@ class MainActivity : AppCompatActivity() {
             false -> {
                 buttonSignIn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGrey))
                 buttonSignIn.text = resources.getText(R.string.not_all_fields)
-
             }
         }
+    }
 
+    fun getPasswordField():EditText {
+       return this.passw
     }
 }

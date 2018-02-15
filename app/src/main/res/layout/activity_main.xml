@@ -12,14 +12,14 @@
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_top_logo"
         android:background="@drawable/img"
 
         />
 
     <RelativeLayout
         android:id="@+id/actMainFormSignIn"
-       android:layout_marginTop="@dimen/margin_top_form"
+        android:layout_below="@+id/actMainLogo"
+        android:layout_marginTop="@dimen/margin_top_form"
         android:layout_height="@dimen/form_sign_in_height"
         android:layout_width="@dimen/form_sign_in_width"
         android:layout_centerHorizontal="true"
@@ -112,6 +112,6 @@
         android:fontFamily="sans-serif"
         android:textStyle="normal"
         android:gravity="center"
-        tools:text="@string/use_social_network"/>
+        android:text="@string/use_social_network"/>
 
 </RelativeLayout>

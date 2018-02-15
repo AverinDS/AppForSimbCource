@@ -12,7 +12,6 @@
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_top_logo"
         android:background="@drawable/img"
 
         />
@@ -105,10 +104,9 @@
         android:layout_marginTop="@dimen/margin_top_use_social_net"
         android:layout_below="@+id/actMainFormSignIn"
         android:textColor="@color/colorWhite"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
         android:textSize="@dimen/font_size_use_social_net"
         android:fontFamily="sans-serif"
-        android:textStyle="normal"
         android:gravity="center"
         tools:text="@string/use_social_network"/>
 

@@ -14,8 +14,8 @@
     <dimen name="form_sign_in_width">312dp</dimen>
     <dimen name="form_sign_in_height">312dp</dimen>
 
-    <dimen name="margin_top_logo">24dp</dimen>
-    <dimen name="margin_top_form">208dp</dimen>
+
+    <dimen name="margin_top_form">-16dp</dimen>
     <dimen name="margin_top_login">40dp</dimen>
     <dimen name="margin_top_password">41dp</dimen>
     <dimen name="margin_top_sing_up_forgotten">39dp</dimen>

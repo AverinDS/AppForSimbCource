@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.widget.Toast
+import com.example.dmitry.appforsimbcourse.view.MainActivity
 import com.example.dmitry.appforsimbcourse.view.ProfileActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -16,52 +17,47 @@ import com.google.firebase.auth.FirebaseAuth
  */
 class Presenter {
 
-    private val LOG_TAG :String = "Presenter"
+    private val LOG_TAG: String = "Presenter"
 
 
-    fun login (activity:Activity, mAuth:FirebaseAuth, email:String, passw: String) {
-       mAuth.signInWithEmailAndPassword(email, passw)
-               .addOnCompleteListener(activity, object: OnCompleteListener<AuthResult> {
-                   override fun onComplete(task: Task<AuthResult>) {
-                       if (task.isSuccessful) {
-                           Log.d(LOG_TAG,"SignIn: Success")
-                           mAuth.currentUser
-                           startProfileActivity(activity,mAuth)
-                       } else {
-                           Log.d (LOG_TAG, "SignIn: Fail" + task.exception.toString())
-                           Toast.makeText(activity,"Ошибка авторизации",Toast.LENGTH_LONG).show()
-                       }
-                   }
-               })
-
-    }
-
-    fun signUp(activity: Activity, mAuth:FirebaseAuth, email:String, passw:String) {
-        mAuth.createUserWithEmailAndPassword(email, passw)
-                .addOnCompleteListener(activity, object:OnCompleteListener<AuthResult> {
-                    override fun onComplete(task: Task<AuthResult>) {
-                        if(task.isSuccessful) {
-                            Log.d(LOG_TAG, "createUser: Success ")
-                            Toast.makeText(activity,"Вы успешно зарегистрировались",
-                                    Toast.LENGTH_LONG).show()
-                            mAuth.currentUser
-                            startProfileActivity(activity,mAuth)
-                        } else {
-                            Log.d(LOG_TAG, "createUser: Fail " + task.exception.toString())
-                            Toast.makeText(activity,"Ошибка регистрации",Toast.LENGTH_LONG).show()
-                        }
+    fun login(activity: MainActivity, mAuth: FirebaseAuth, email: String, passw: String) {
+        mAuth.signInWithEmailAndPassword(email, passw)
+                .addOnCompleteListener(activity) { task ->
+                    if (task.isSuccessful) {
+                        Log.d(LOG_TAG, "SignIn: Success")
+                        mAuth.currentUser
+                        startProfileActivity(activity, mAuth)
+                    } else {
+                        Log.d(LOG_TAG, "SignIn: Fail" + task.exception.toString())
+                        Toast.makeText(activity, "Ошибка авторизации", Toast.LENGTH_LONG).show()
+                        activity.getPasswordField().error = "Неверный пароль"
                     }
-                })
+                }
     }
 
-    fun isEmailValid(email:CharSequence): Boolean {
+    fun signUp(activity: Activity, mAuth: FirebaseAuth, email: String, passw: String) {
+        mAuth.createUserWithEmailAndPassword(email, passw)
+                .addOnCompleteListener(activity) { task ->
+                    if (task.isSuccessful) {
+                        Log.d(LOG_TAG, "createUser: Success ")
+                        Toast.makeText(activity, "Вы успешно зарегистрировались",
+                                Toast.LENGTH_LONG).show()
+                        mAuth.currentUser
+                        startProfileActivity(activity, mAuth)
+                    } else {
+                        Log.d(LOG_TAG, "createUser: Fail " + task.exception.toString())
+                        Toast.makeText(activity, "Ошибка регистрации", Toast.LENGTH_LONG).show()
+                    }
+                }
+    }
+
+    fun isEmailValid(email: CharSequence): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    fun startProfileActivity(parent: Activity, mAuth: FirebaseAuth){
-        val intent:Intent = Intent(parent, ProfileActivity::class.java )
+    fun startProfileActivity(parent: Activity, mAuth: FirebaseAuth) {
+        val intent: Intent = Intent(parent, ProfileActivity::class.java)
         intent.putExtra("email", mAuth.currentUser?.email)
-        startActivity(parent,intent,null)
-
+        startActivity(parent, intent, null)
     }
 }
