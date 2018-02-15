@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="width_login_password">264dp</dimen>
+    <dimen name="width_sing_in_forgotten">195dp</dimen>
+
     <dimen name="logo_width">280dp</dimen>
     <dimen name="logo_height">200dp</dimen>
+
+    <dimen name="height_sing_in_forgotten">39dp</dimen>
+    <dimen name="height_btn_sign_in">48dp</dimen>
+    <dimen name="height_use_social_net">48dp</dimen>
+
+
     <dimen name="form_sign_in_width">312dp</dimen>
     <dimen name="form_sign_in_height">312dp</dimen>
+
+    <dimen name="margin_top_logo">24dp</dimen>
+    <dimen name="margin_top_form">208dp</dimen>
+    <dimen name="margin_top_login">40dp</dimen>
+    <dimen name="margin_top_password">41dp</dimen>
+    <dimen name="margin_top_sing_up_forgotten">39dp</dimen>
+    <dimen name="margin_top_use_social_net">16dp</dimen>
+
+    <dimen name="margin_btn_sign_in">24dp</dimen>
+
+    <dimen name="font_size_btn_sing_in">32sp</dimen>
+    <dimen name="font_size_sign_up_forgotten">12sp</dimen>
+    <dimen name="font_size_login">16sp</dimen>
+    <dimen name="font_size_password">16sp</dimen>
+    <dimen name="font_size_use_social_net">14sp</dimen>
+
 </resources>
