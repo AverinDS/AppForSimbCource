@@ -2,6 +2,7 @@ package com.example.dmitry.appforsimbcourse.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.ActionBar
 import com.example.dmitry.appforsimbcourse.R
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //title and back
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setTitle(resources.getString(R.string.auth))
+
 
 
 

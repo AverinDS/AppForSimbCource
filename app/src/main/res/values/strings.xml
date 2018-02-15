@@ -6,6 +6,8 @@
     <string name="forgotten_passw">Забыли пароль?</string>
     <string name="use_social_network">Использовать соцсети</string>
     <string name="not_all_fields">Не все поля заполнены</string>
+    <string name="back">Назад</string>
+    <string name="auth">Авторизация</string>
 
 
 
