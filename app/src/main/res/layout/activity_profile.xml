@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.dmitry.appforsimbcourse.view.ProfileActivity">
-
-    <TextView
-        android:id="@+id/actProfileName"
+    <LinearLayout
+        android:id="@+id/actProfileFioForm"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="32sp"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border">
+    <ImageView
+        android:id="@+id/actProfileAvatar"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+
+        android:background="@color/colorBlack" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Михаил Дерябин"
+        android:textSize="24sp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Редактировать"
+        android:layout_marginBottom="24dp"
+        android:textAllCaps="false"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/actProfileInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
+        <ImageView
+            android:id="@+id/actProfilePhoneNumb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/colorBlack"
+            />
+
+        <ImageView
+            android:id="@+id/actProfileEmail"
+            android:layout_below="@id/actProfilePhoneNumb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/colorBlack"
+            android:layout_marginBottom="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="+890901230103103"
+            android:layout_toEndOf="@id/actProfilePhoneNumb"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="asdasdasd@asdasds.ru"
+            android:layout_toEndOf="@id/actProfileEmail"
+            android:layout_below="@id/actProfilePhoneNumb"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/actProfileHideContactForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:layout_marginTop="55dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Скрыть контактные данные"
+            android:layout_marginTop="11dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"/>
+        <Switch
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="16dp"/>
+
+    </LinearLayout>
+    <View android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+    </View>
+
+    <LinearLayout
+        android:id="@+id/actProfileLogOutForm"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@color/colorBlack"/>
+
+    </LinearLayout>
+
+</LinearLayout>
