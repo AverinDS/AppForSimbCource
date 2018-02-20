@@ -34,14 +34,22 @@
 
     <!--ProfileActivity-->
     <dimen name="height_of_image_profile">88dp</dimen>
+    <dimen name="height_of_layout_exit">56dp</dimen>
     <dimen name="weight_of_image_profile">88dp</dimen>
 
     <dimen name="margin_top_of_image_profile">24dp</dimen>
     <dimen name="margin_top_fio_field">24dp</dimen>
     <dimen name="margin_top_ico_image">16dp</dimen>
+    <dimen name="marginTop_hide_data">55dp</dimen>
     <dimen name="margin_start_ico_image">16dp</dimen>
 
+    <dimen name="margin_bottom_label_hide_data">16dp</dimen>
+    <dimen name="margin_start_label_hide_data">16dp</dimen>
+    <dimen name="margin_top_label_hide_data">11dp</dimen>
     <dimen name="margin_bottom_edit">24dp</dimen>
+    <dimen name="margin_end_switch">16dp</dimen>
+    <dimen name="margin_start_switch">84dp</dimen>
+    <dimen name="margin_top_switch">11dp</dimen>
 
     <dimen name="font_size_fio">24sp</dimen>
     <dimen name="font_size_info_profile">14sp</dimen>

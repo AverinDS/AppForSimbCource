@@ -9,6 +9,8 @@
     <string name="back">Назад</string>
     <string name="auth">Авторизация</string>
     <string name="sign_in">Войти</string>
+    <string name="exit">Выход</string>
+    <string name="hide_contact_data">Скрыть контактные данные</string>
 
 
 </resources>
