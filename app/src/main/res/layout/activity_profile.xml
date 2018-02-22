@@ -38,7 +38,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/margin_bottom_edit"
             android:background="@color/colorWhite"
-            android:text="Редактировать"
+            android:text="@string/edit"
             android:textAllCaps="false" />
     </LinearLayout>
 
@@ -83,7 +83,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:layout_toEndOf="@+id/actProfileEmailImg"
-            android:text="asdasdasd@asdasds.ru"
             android:textSize="@dimen/font_size_info_profile" />
 
     </RelativeLayout>
@@ -92,18 +91,18 @@
         android:id="@+id/actProfileHideContactForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop_hide_data"
+        android:layout_marginTop="@dimen/margin_top_hide_data"
         android:background="@drawable/border"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/marginTop_hide_data"
+            android:layout_marginBottom="@dimen/margin_top_hide_data"
             android:layout_marginStart="@dimen/margin_start_label_hide_data"
             android:layout_marginTop="@dimen/margin_top_label_hide_data"
             android:gravity="center"
-            android:text="Скрыть контактные данные"
+            android:text="@string/hide_contact_data"
             android:textSize="@dimen/font_size_info_profile" />
 
         <Switch
@@ -141,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start_label_hide_data"
             android:layout_marginTop="@dimen/margin_start_label_hide_data"
-            android:text="Выход"
+            android:text="@string/exit"
             android:textSize="14sp" />
 
     </LinearLayout>

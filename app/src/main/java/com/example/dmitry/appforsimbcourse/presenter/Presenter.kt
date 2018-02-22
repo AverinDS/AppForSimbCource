@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.widget.Toast
 import com.example.dmitry.appforsimbcourse.view.MainActivity
+import com.example.dmitry.appforsimbcourse.view.PersonalDataActivity
 import com.example.dmitry.appforsimbcourse.view.ProfileActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -56,7 +57,7 @@ class Presenter {
     }
 
     fun startProfileActivity(parent: Activity, mAuth: FirebaseAuth) {
-        val intent: Intent = Intent(parent, ProfileActivity::class.java)
+        val intent: Intent = Intent(parent, PersonalDataActivity::class.java)
         intent.putExtra("email", mAuth.currentUser?.email)
         startActivity(parent, intent, null)
     }
