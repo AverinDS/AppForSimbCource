@@ -10,11 +10,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
+
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/actPersonalDataAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -22,7 +24,12 @@
                 android:layout_marginTop="@dimen/margin_top_of_image_profile"
                 android:background="@drawable/default_photo"
                 android:maxHeight="@dimen/height_of_image_profile"
-                android:maxWidth="@dimen/weight_of_image_profile" />
+                android:maxWidth="@dimen/weight_of_image_profile"
+                android:scaleType="fitCenter"
+
+                app:riv_mutate_background="true"
+                app:riv_oval="true"
+                app:riv_tile_mode="repeat" />
 
             <TextView
                 android:id="@+id/actPersonalDataFI"
@@ -41,87 +48,81 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/margin_bottom_change_photo"
                 android:background="@color/colorWhite"
-                android:textColor="@color/colorGrey"
                 android:text="@string/change_photo"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/colorGray" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/personal_data"
+                android:layout_marginStart="@dimen/margin_start_label_personal_data"
                 android:gravity="start"
-                android:textColor="@color/colorBlack"
-                android:layout_marginStart="@dimen/margin_start_label_personal_data"
-                />
+                android:text="@string/personal_data"
+                android:textColor="@color/colorBlack" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_before_info"
                 android:layout_marginStart="@dimen/margin_start_label_personal_data"
+                android:layout_marginTop="@dimen/margin_top_before_info"
                 android:text="@string/name"
-                android:textColor="@color/colorGrey"/>
+                android:textColor="@color/colorGray" />
 
             <EditText
                 android:id="@+id/actPersonalDataName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_start_label_personal_data"
                 android:layout_marginEnd="@dimen/margin_end_label_personal_data"
-                />
+                android:layout_marginStart="@dimen/margin_start_label_personal_data" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_between_field"
                 android:layout_marginStart="@dimen/margin_start_label_personal_data"
+                android:layout_marginTop="@dimen/margin_top_between_field"
                 android:text="@string/phone"
-                android:textColor="@color/colorGrey"/>
+                android:textColor="@color/colorGray" />
 
             <EditText
                 android:id="@+id/actPersonalDataPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_start_label_personal_data"
                 android:layout_marginEnd="@dimen/margin_end_label_personal_data"
-                />
+                android:layout_marginStart="@dimen/margin_start_label_personal_data" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top_between_field"
                 android:layout_marginStart="@dimen/margin_start_label_personal_data"
+                android:layout_marginTop="@dimen/margin_top_between_field"
                 android:text="@string/email"
-                android:textColor="@color/colorGrey"/>
+                android:textColor="@color/colorGray" />
 
             <EditText
                 android:id="@+id/actPersonalDataEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_start_label_personal_data"
                 android:layout_marginEnd="@dimen/margin_end_label_personal_data"
-                />
+                android:layout_marginStart="@dimen/margin_start_label_personal_data" />
+
             <Button
                 android:id="@+id/actPersonalDataBtnSave"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_btn_save"
-                android:layout_marginTop="@dimen/margin_top_between_field"
+                android:layout_marginBottom="@dimen/margin_bottom_btn_sign_in"
                 android:layout_marginEnd="@dimen/margin_start_label_personal_data"
                 android:layout_marginStart="@dimen/margin_end_label_personal_data"
-                android:layout_marginBottom="@dimen/margin_bottom_btn_sign_in"
-                android:background="@color/colorGrey"
-                android:text="@string/save"
-                android:textColor="@color/colorWhite"
+                android:layout_marginTop="@dimen/margin_top_between_field"
+                android:background="@color/colorGray"
                 android:fontFamily="sans-serif-medium"
-                android:textStyle="normal"
+                android:text="@string/save"
                 android:textAllCaps="false"
-                />
+                android:textColor="@color/colorWhite"
+                android:textStyle="normal" />
 
         </LinearLayout>
 
     </ScrollView>
-
-
 
 
 </LinearLayout>

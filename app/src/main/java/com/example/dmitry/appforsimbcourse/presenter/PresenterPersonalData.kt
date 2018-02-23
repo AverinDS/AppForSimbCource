@@ -21,4 +21,7 @@ class PresenterPersonalData {
                 MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER))
         formatWatcher.installOn(editText)
     }
+    fun saveToServer() {
+
+    }
 }

@@ -66,7 +66,7 @@
                 android:textSize="@dimen/font_size_sign_up_forgotten"
                 android:textStyle="normal"
                 android:textAllCaps="false"
-                android:textColor="@color/colorGrey"
+                android:textColor="@color/colorGray"
                 android:gravity="center"
                />
             <Button
@@ -79,7 +79,7 @@
                 android:fontFamily="sans-serif"
                 android:textSize="@dimen/font_size_sign_up_forgotten"
                 android:textAllCaps="false"
-                android:textColor="@color/colorGrey"
+                android:textColor="@color/colorGray"
                 android:gravity="center"
                 />
         </LinearLayout>
@@ -92,7 +92,7 @@
             android:layout_marginRight="@dimen/margin_btn_sign_in"
             android:layout_marginLeft="@dimen/margin_btn_sign_in"
             android:layout_marginBottom="@dimen/margin_bottom_btn_sign_in"
-            android:background="@color/colorGrey"
+            android:background="@color/colorGray"
             android:text="@string/not_all_fields"
             android:textColor="@color/colorWhite"
             android:fontFamily="sans-serif-medium"

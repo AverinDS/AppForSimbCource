@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 buttonSignIn.text = resources.getText(R.string.sign_in)
             }
             false -> {
-                buttonSignIn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGrey))
+                buttonSignIn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGray))
                 buttonSignIn.text = resources.getText(R.string.not_all_fields)
             }
         }
