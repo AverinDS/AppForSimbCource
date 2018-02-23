@@ -79,7 +79,7 @@
                 android:textColor="@color/colorGrey"/>
 
             <EditText
-                android:id="@+id/actPersonalPhone"
+                android:id="@+id/actPersonalDataPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_start_label_personal_data"
@@ -95,7 +95,7 @@
                 android:textColor="@color/colorGrey"/>
 
             <EditText
-                android:id="@+id/actPersonalEmail"
+                android:id="@+id/actPersonalDataEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_start_label_personal_data"
