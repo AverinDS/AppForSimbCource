@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
+    //лучше давать классам осознанные имена
 
     private val minLengthPassword: Int = 8
     private lateinit var mAuth: FirebaseAuth
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var passw: EditText
 
 
-    private var presenter: Presenter = Presenter()
+    private var presenter: Presenter = Presenter() //не обязательно указывать тип переменной
     private var isCorrectLog: Boolean = false
 
 
@@ -38,16 +39,16 @@ class MainActivity : AppCompatActivity() {
         login = findViewById(R.id.actMainLogin)
         passw = findViewById(R.id.actMainPassw)
 
-        this.mAuth = FirebaseAuth.getInstance()
+        this.mAuth = FirebaseAuth.getInstance() //тут и в других местах точно нужно указать this.?
 
         //пока что регистрацию сделаю на той же форме, что и авторизацию
-        buttonSignUp.setOnClickListener({
+        buttonSignUp.setOnClickListener{
             if (isCorrectLog.and(passw.text.toString().length >= this.minLengthPassword)) {
                 presenter.signUp(this, mAuth, login.text.toString(), passw.text.toString())
             } else {
                 Toast.makeText(this, "Неправильные данные", Toast.LENGTH_SHORT).show()
             }
-        })
+        } //если функция принимает объект интерфейса как единственный или последний аргумент, то можно его вынести за скобки
 
         buttonSignIn.setOnClickListener({
             if (isCorrectLog.and(passw.text.toString().length >= this.minLengthPassword)) {
@@ -56,8 +57,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Неправильные данные", Toast.LENGTH_SHORT).show()
             }
         })
+        // проверку корректности данных лучше вынести в отдельную функцию
+        // login.text.toString() часто используется - наверно лучше убрать в отдельную функцию
+        // т.к. для signin и signup listenerы очень похожы, наверно лучше будет их функционал в отдельную функцию, а индивидуальные параметры передавать в качестве аргументов
 
         login.addTextChangedListener(object : TextWatcher {
+            //в данном случае наверно лучше будет если активити реализует этот интерфейс, а в функцию передать (this). И тудушки заменить на "= Unit"
             override fun afterTextChanged(p0: Editable?) {
 //                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
@@ -82,6 +87,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         //val currentUser = mAuth.currentUser
+        //лучше не оставлять так код, ибо не понятно зачем он тут
     }
 
     fun setActionBar() {
@@ -89,6 +95,12 @@ class MainActivity : AppCompatActivity() {
         actionBar?.setHomeButtonEnabled(true)
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.title = resources.getString(R.string.auth)
+        //лучше сделать так
+        supportActionBar?.apply {
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            title = resources.getString(R.string.auth)
+        }
     }
 
 
@@ -96,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         when (couldSignIn) {
             true -> {
                 buttonSignIn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorGreen))
+                //лучше прописать цвета в color ресурсы и менять, меняя state https://developer.android.com/guide/topics/resources/color-list-resource.html
                 buttonSignIn.text = resources.getText(R.string.sign_in)
             }
             false -> {
@@ -103,6 +116,7 @@ class MainActivity : AppCompatActivity() {
                 buttonSignIn.text = resources.getText(R.string.not_all_fields)
             }
         }
+        // лучше не использовать свитч для таких простых условий
     }
 
     fun getPasswordField():EditText {

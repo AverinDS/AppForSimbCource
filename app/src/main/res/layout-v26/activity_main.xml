@@ -7,6 +7,9 @@
     android:background="#000">
 
 
+    <!--действительно нужен отдельный layout для api 26+?-->
+
+
     <ImageView
         android:id="@+id/actMainLogo"
         android:layout_width="@dimen/logo_width"

@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ProfileActivity"></activity>
+        <activity android:name=".view.ProfileActivity" />
+        <!--если у тэга пустое тело, то лучше его сколлапсить-->
     </application>
 
 </manifest>
