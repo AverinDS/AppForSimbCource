@@ -10,11 +10,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.dmitry.appforsimbcourse.R
-import com.example.dmitry.appforsimbcourse.presenter.Presenter
+import com.example.dmitry.appforsimbcourse.presenter.PresenterSignInOrUpAct
 import com.google.firebase.auth.FirebaseAuth
 
 
-class MainActivity : AppCompatActivity() {
+class SignInOrUpActivity : AppCompatActivity() {
 
     private val minLengthPassword: Int = 8
     private lateinit var mAuth: FirebaseAuth
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var passw: EditText
 
 
-    private var presenter: Presenter = Presenter()
+    private var presenter: PresenterSignInOrUpAct = PresenterSignInOrUpAct()
     private var isCorrectLog: Boolean = false
 
 

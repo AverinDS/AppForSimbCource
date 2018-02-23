@@ -5,19 +5,19 @@ import android.content.Intent
 import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.widget.Toast
-import com.example.dmitry.appforsimbcourse.view.MainActivity
+import com.example.dmitry.appforsimbcourse.view.SignInOrUpActivity
 import com.example.dmitry.appforsimbcourse.view.PersonalDataActivity
 import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Created by dmitry on 14.02.18.
  */
-class Presenter {
+class PresenterSignInOrUpAct {
 
-    private val LOG_TAG: String = "Presenter"
+    private val LOG_TAG: String = "PresenterSignInOrUpAct"
 
 
-    fun login(activity: MainActivity, mAuth: FirebaseAuth, email: String, passw: String) {
+    fun login(activity: SignInOrUpActivity, mAuth: FirebaseAuth, email: String, passw: String) {
         mAuth.signInWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(activity) { task ->
                     if (task.isSuccessful) {
