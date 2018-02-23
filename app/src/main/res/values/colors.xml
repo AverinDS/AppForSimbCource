@@ -8,4 +8,6 @@
     <color name="colorBlack">#000</color>
     <color name="colorGreen">#7bcb57</color>
 
+    <!--такие цвета как black и white есть в системе-->
+    <color name="colorB">@android:color/black</color>
 </resources>

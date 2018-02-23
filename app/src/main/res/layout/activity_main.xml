@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.dmitry.appforsimbcourse.view.MainActivity"
-    android:background="#000">
+    android:background="#000"
+    tools:context="com.example.dmitry.appforsimbcourse.view.MainActivity">
 
 
     <ImageView
@@ -12,41 +12,42 @@
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/img"
+        android:background="@drawable/img" />
 
-        />
+    <!--картинки лучше сжимать в webp, используя инструменты студии-->
 
     <RelativeLayout
         android:id="@+id/actMainFormSignIn"
-        android:layout_below="@+id/actMainLogo"
-        android:layout_marginTop="@dimen/margin_top_form"
-        android:layout_height="@dimen/form_sign_in_height"
         android:layout_width="@dimen/form_sign_in_width"
+        android:layout_height="@dimen/form_sign_in_height"
+        android:layout_below="@+id/actMainLogo"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_form"
         android:background="#FFFFFF">
-        
+
         <EditText
             android:id="@+id/actMainLogin"
             android:layout_width="@dimen/width_login_password"
             android:layout_height="wrap_content"
-            android:hint="@string/login"
-            android:textSize="@dimen/font_size_login"
-            android:fontFamily="sans-serif"
-            android:layout_marginTop="@dimen/margin_top_login"
             android:layout_centerHorizontal="true"
-            android:inputType="textEmailAddress"/>
+            android:layout_marginTop="@dimen/margin_top_login"
+            android:fontFamily="sans-serif"
+            android:hint="@string/login"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/font_size_login" />
+
         <EditText
             android:id="@+id/actMainPassw"
             android:layout_width="@dimen/width_login_password"
             android:layout_height="wrap_content"
             android:layout_below="@+id/actMainLogin"
-            android:hint="@string/password"
-            android:textSize="@dimen/font_size_password"
-            android:fontFamily="sans-serif"
-            android:layout_marginTop="@dimen/margin_top_password"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_top_password"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            />
+            android:textSize="@dimen/font_size_password" />
+
         <LinearLayout
             android:id="@+id/actMainSignUpForgotten"
             android:layout_width="match_parent"
@@ -59,59 +60,61 @@
                 android:id="@+id/actMainBtnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorWhite"
-                android:text="@string/sign_up"
                 android:layout_weight="1"
+                android:background="@color/colorWhite"
                 android:fontFamily="sans-serif"
-                android:textSize="@dimen/font_size_sign_up_forgotten"
-                android:textStyle="normal"
+                android:gravity="center"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
                 android:textColor="@color/colorGrey"
-                android:gravity="center"
-               />
+                android:textSize="@dimen/font_size_sign_up_forgotten"
+                android:textStyle="normal" />
+
             <Button
                 android:id="@+id/actMainBtnForgotten"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorWhite"
-                android:text="@string/forgotten_passw"
                 android:layout_weight="1"
+                android:background="@color/colorWhite"
                 android:fontFamily="sans-serif"
-                android:textSize="@dimen/font_size_sign_up_forgotten"
+                android:gravity="center"
+                android:text="@string/forgotten_passw"
                 android:textAllCaps="false"
                 android:textColor="@color/colorGrey"
-                android:gravity="center"
-                />
+                android:textSize="@dimen/font_size_sign_up_forgotten" />
         </LinearLayout>
+
         <Button
             android:id="@+id/actMainBtnSignIn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_btn_sign_in"
             android:layout_below="@+id/actMainSignUpForgotten"
-            android:layout_marginTop="@dimen/margin_btn_sign_in"
-            android:layout_marginRight="@dimen/margin_btn_sign_in"
-            android:layout_marginLeft="@dimen/margin_btn_sign_in"
             android:layout_marginBottom="@dimen/margin_bottom_btn_sign_in"
+            android:layout_marginLeft="@dimen/margin_btn_sign_in"
+            android:layout_marginRight="@dimen/margin_btn_sign_in"
+            android:layout_marginTop="@dimen/margin_btn_sign_in"
             android:background="@color/colorGrey"
-            android:text="@string/not_all_fields"
-            android:textColor="@color/colorWhite"
             android:fontFamily="sans-serif-medium"
-            android:textStyle="normal"
+            android:text="@string/not_all_fields"
             android:textAllCaps="false"
-            />
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal" />
     </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_use_social_net"
-        android:layout_marginTop="@dimen/margin_top_use_social_net"
         android:layout_below="@+id/actMainFormSignIn"
-        android:textColor="@color/colorWhite"
-        android:textAlignment="center"
-        android:textSize="@dimen/font_size_use_social_net"
+        android:layout_marginTop="@dimen/margin_top_use_social_net"
         android:fontFamily="sans-serif"
-        android:textStyle="normal"
         android:gravity="center"
-        android:text="@string/use_social_network"/>
+        android:text="@string/use_social_network"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/font_size_use_social_net"
+        android:textStyle="normal" />
 
+    <!--лучше форматировать код в соответствии с code style (ctrl+alt+L hotkey)-->
+    <!--и по возможности стараться минимизировать вложенность layoutов-->
+    <!--цвета лучше задавать в colors.xml а тут их указывать с помощью ссылки-->
 </RelativeLayout>
