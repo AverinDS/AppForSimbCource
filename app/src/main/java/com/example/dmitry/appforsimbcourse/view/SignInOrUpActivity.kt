@@ -79,11 +79,6 @@ class SignInOrUpActivity : AppCompatActivity() {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        //val currentUser = mAuth.currentUser
-    }
-
     fun setActionBar() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setHomeButtonEnabled(true)
@@ -105,7 +100,7 @@ class SignInOrUpActivity : AppCompatActivity() {
         }
     }
 
-    fun getPasswordField():EditText {
-       return this.passw
+    fun getPasswordField(): EditText {
+        return this.passw
     }
 }

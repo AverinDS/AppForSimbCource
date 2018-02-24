@@ -25,6 +25,7 @@
             android:background="@drawable/default_photo" />
 
         <TextView
+            android:id="@+id/actProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -67,6 +68,7 @@
             android:background="@drawable/email_pic" />
 
         <TextView
+            android:id="@+id/actProfilePhoneNumb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_start_ico_image"

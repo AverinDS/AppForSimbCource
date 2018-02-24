@@ -1,11 +1,10 @@
 package com.example.dmitry.appforsimbcourse.helper
 
-import android.util.Log
 import com.example.dmitry.appforsimbcourse.model.AppUser
+import com.example.dmitry.appforsimbcourse.interfaces.IMyPresenter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 /**
  * Created by dmitry on 23.02.18.
@@ -18,6 +17,23 @@ class FirebaseDB {
 
     fun addNewInDB(user: AppUser) {
         mDatabase.child("users").child(user_Firebase.uid).setValue(user)
+    }
+
+    fun getUsersInfo(presenter: IMyPresenter) {
+        mDatabase.child("users").child(user_Firebase.uid)
+                .addListenerForSingleValueEvent(
+                        object: ValueEventListener {
+
+                            override fun onDataChange(dataSnapshot: DataSnapshot?) {
+                                val appUser:AppUser = dataSnapshot!!.getValue(AppUser::class.java)!!
+                                presenter.updateUI(appUser)
+                            }
+
+                            override fun onCancelled(p0: DatabaseError?) {
+
+                            }
+                        }
+                )
     }
 
 }

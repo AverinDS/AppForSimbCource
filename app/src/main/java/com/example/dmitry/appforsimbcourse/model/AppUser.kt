@@ -15,7 +15,7 @@ class AppUser {
 
     constructor() {}
 
-    constructor(_email:String, _phone:String, _name:String ) {
+    constructor(_email: String, _phone: String, _name: String) {
         email = _email
         phone = _phone
         name = _name
