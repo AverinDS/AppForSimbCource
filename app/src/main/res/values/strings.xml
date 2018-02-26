@@ -20,5 +20,8 @@
     <string name="phone">Телефон</string>
     <string name="email">E-mail</string>
 
+    <string name="camera">Камера</string>
+    <string name="gallery">Галерея</string>
+
 
 </resources>

@@ -52,4 +52,12 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         ContextCompat.startActivity(parent, intent, null)
     }
 
+    fun getPhotoFromGallery() {
+
+    }
+
+    fun getPhotoFromCamera() {
+
+    }
+
 }
