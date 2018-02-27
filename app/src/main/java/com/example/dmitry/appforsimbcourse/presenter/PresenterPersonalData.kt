@@ -2,6 +2,7 @@ package com.example.dmitry.appforsimbcourse.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.support.v4.content.ContextCompat
 import android.widget.EditText
 import com.example.dmitry.appforsimbcourse.helper.FirebaseDB
@@ -13,6 +14,10 @@ import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import com.example.dmitry.appforsimbcourse.helper.Permissons
+
 
 /**
  * Created by dmitry on 23.02.18.
@@ -52,12 +57,21 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         ContextCompat.startActivity(parent, intent, null)
     }
 
-    fun getPhotoFromGallery() {
-
+    fun getIntentOnImageFromGallery():Intent {
+        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.type = ("image/*")
+        return intent
     }
 
     fun getPhotoFromCamera() {
 
     }
+
+    fun getCameraPermission(activity:Activity, codeCamera:Int) {
+        val perm = Permissons()
+        perm.requestCameraPermission(activity,codeCamera)
+    }
+
+
 
 }
