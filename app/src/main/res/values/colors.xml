@@ -11,4 +11,6 @@
     <color name="colorGreenLight">#d1e5bd</color>
     <color name="colorGreenLightAlpha">#50d1e5bd</color>
 
+    <!--такие цвета как black и white есть в системе-->
+    <color name="colorB">@android:color/black</color>
 </resources>

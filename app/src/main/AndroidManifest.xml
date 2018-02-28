@@ -36,11 +36,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.ProfileActivity"
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".view.PersonalDataActivity"
             android:theme="@style/DarkActivity" />
+
     </application>
 
 </manifest>

@@ -1,14 +1,16 @@
 package com.example.dmitry.appforsimbcourse.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.example.dmitry.appforsimbcourse.R
 import com.example.dmitry.appforsimbcourse.interfaces.IMyActivity
 import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterProfile
 
+
 class ProfileActivity : AppCompatActivity(), IMyActivity {
+
 
     private val presenter: PresenterProfile = PresenterProfile(this)
 
@@ -31,5 +33,6 @@ class ProfileActivity : AppCompatActivity(), IMyActivity {
         email.text = appUser.email
         name.text = appUser.name
         phone.text = appUser.phone
+
     }
 }
