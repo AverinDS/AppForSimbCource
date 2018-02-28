@@ -2,7 +2,7 @@ package com.example.dmitry.appforsimbcourse.presenter
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Resources
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.widget.EditText
 import com.example.dmitry.appforsimbcourse.helper.FirebaseDB
@@ -14,13 +14,10 @@ import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import com.example.dmitry.appforsimbcourse.helper.Permissons
-import ru.tinkoff.decoro.BuildConfig
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -31,6 +28,8 @@ import java.util.*
  * Created by dmitry on 23.02.18.
  */
 class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
+    private val AUTHORITIES_FILEPROVIDER = "com.example.dmitry.appforsimbcourse.fileprovider"
+
     private val activity: IMyActivity = _activity
 
     private val LOG_TAG: String = "PresenterPersonalData"
@@ -71,17 +70,15 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         return intent
     }
 
-    fun getPhotoFromCamera(activity: Activity):Intent {
+    fun getIntentUriForCamera(activity: Activity):Pair<Intent, Uri> {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val photoFile = createImageFile(activity)
+        val photoUri = FileProvider.getUriForFile(activity, AUTHORITIES_FILEPROVIDER, photoFile)
 
-
-
-        val photofile = createImageFile(activity)
-        val photoUri = FileProvider.getUriForFile(activity,
-                "com.example.dmitry.appforsimbcourse.fileprovider", photofile)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        return intent
+
+        return Pair(intent, photoUri)
     }
 
     fun getCameraPermission(activity:Activity, codeCamera:Int) {
@@ -91,19 +88,12 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
 
 
     @Throws(IOException::class)
-    private fun createImageFile(a:Activity): File {
+    private fun createImageFile(activity:Activity): File {
         // Create an image file name
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
-        val storageDir = a.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(
-                imageFileName, /* prefix */
-                ".jpg", /* suffix */
-                storageDir      /* directory */
-        )
-
-        // Save a file: path for use with ACTION_VIEW intents
-        var mCurrentPhotoPath = image.absolutePath
+        val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(imageFileName, ".jpg", storageDir )
         return image
     }
 

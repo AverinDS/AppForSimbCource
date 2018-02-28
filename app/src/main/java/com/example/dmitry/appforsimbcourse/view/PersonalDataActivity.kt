@@ -3,13 +3,11 @@ package com.example.dmitry.appforsimbcourse.view
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -20,9 +18,6 @@ import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterPersonalData
 import com.makeramen.roundedimageview.RoundedImageView
 import java.io.IOException
-import android.R.attr.data
-import android.support.v4.app.NotificationCompat.getExtras
-
 
 
 class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActivity {
@@ -36,6 +31,8 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     private lateinit var btnSave: Button
     private lateinit var changePhoto: TextView
     private lateinit var avatar: RoundedImageView
+    private lateinit var uriImageCamera: Uri
+
     private val presenterPersonalData: PresenterPersonalData = PresenterPersonalData(this)
 
     private var cameraIsPermist = false
@@ -47,9 +44,9 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         name = findViewById(R.id.actPersonalDataName)
         email = findViewById(R.id.actPersonalDataEmail)
         phone = findViewById(R.id.actPersonalDataPhone)
+        avatar = findViewById(R.id.actPersonalDataAvatar)
         btnSave = findViewById(R.id.actPersonalDataBtnSave)
         changePhoto = findViewById(R.id.actPersonalDataChangePhoto)
-        avatar = findViewById(R.id.actPersonalDataAvatar)
 
         presenterPersonalData.getUsersInfo()
 
@@ -60,28 +57,20 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        var bitmap: Bitmap
-        val selectedImage: Uri
+        val selectedImageGallery: Uri
 
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
             GALLERY_IMAGE -> {
                 if (resultCode == Activity.RESULT_OK) {
-                     selectedImage = data!!.data
-
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImage)
-                        avatar.setImageBitmap(bitmap)
-                    } catch (ex: IOException) {
-                        ex.stackTrace
-                    }
+                    selectedImageGallery = data!!.data
+                    setAvatar(selectedImageGallery)
                 }
             }
             CAMERA_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
-//                    val thumbnailBitmap = data!!.extras.get("data") as Bitmap
-//                    avatar.setImageBitmap(thumbnailBitmap)
+                    setAvatar(uriImageCamera)
                 }
 
             }
@@ -97,17 +86,13 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                 cameraIsPermist = (grantResults.isNotEmpty() && grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED)
 
-                Log.d(LOG_TAG, cameraIsPermist.toString())
                 if (cameraIsPermist) {
-                    startActivityForResult(presenterPersonalData.getPhotoFromCamera(this),
-                            CAMERA_CODE)
+                    startCamera()
                 } else {
-                    Toast.makeText(this,"Permission denied", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
                 }
-
                 return
             }
-
             else -> {
                 // Ignore all other requests.
             }
@@ -121,9 +106,9 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                     name.text.toString())
             presenterPersonalData.startProfileActivity(this)
         } else {
-            Toast.makeText(this, "Неправильно введенные данные", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Неправильно введенные данные", Toast.LENGTH_SHORT)
+                    .show()
         }
-
     }
 
     override fun updateUI(appUser: AppUser) {
@@ -159,6 +144,24 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                 true
             }
         }
+    }
+
+    private fun startCamera() {
+        val intentUriPair: Pair<Intent, Uri> = presenterPersonalData.getIntentUriForCamera(this)
+        uriImageCamera = intentUriPair.second
+
+        startActivityForResult(intentUriPair.first, CAMERA_CODE)
+    }
+
+    private fun setAvatar(selectedImage: Uri) {
+        val bitmap: Bitmap
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImage)
+            avatar.setImageBitmap(bitmap)
+        } catch (ex: IOException) {
+            ex.stackTrace
+        }
+
     }
 
 
