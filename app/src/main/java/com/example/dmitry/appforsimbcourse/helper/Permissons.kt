@@ -27,6 +27,9 @@ class Permissons {
                         codeCamera)
             }
         } else {
+            ActivityCompat.requestPermissions(activity,
+                    arrayOf(Manifest.permission.CAMERA),
+                    codeCamera)
             // Permission has already been granted
         }
     }

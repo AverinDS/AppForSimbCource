@@ -16,7 +16,15 @@ import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
+import android.os.Environment
+import android.provider.MediaStore
+import android.support.v4.content.FileProvider
 import com.example.dmitry.appforsimbcourse.helper.Permissons
+import ru.tinkoff.decoro.BuildConfig
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -63,8 +71,17 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         return intent
     }
 
-    fun getPhotoFromCamera() {
+    fun getPhotoFromCamera(activity: Activity):Intent {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
+
+
+        val photofile = createImageFile(activity)
+        val photoUri = FileProvider.getUriForFile(activity,
+                "com.example.dmitry.appforsimbcourse.fileprovider", photofile)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        return intent
     }
 
     fun getCameraPermission(activity:Activity, codeCamera:Int) {
@@ -72,6 +89,23 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         perm.requestCameraPermission(activity,codeCamera)
     }
 
+
+    @Throws(IOException::class)
+    private fun createImageFile(a:Activity): File {
+        // Create an image file name
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val storageDir = a.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(
+                imageFileName, /* prefix */
+                ".jpg", /* suffix */
+                storageDir      /* directory */
+        )
+
+        // Save a file: path for use with ACTION_VIEW intents
+        var mCurrentPhotoPath = image.absolutePath
+        return image
+    }
 
 
 }

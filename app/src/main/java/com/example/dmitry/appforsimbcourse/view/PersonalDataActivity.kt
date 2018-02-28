@@ -9,6 +9,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -19,9 +20,14 @@ import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterPersonalData
 import com.makeramen.roundedimageview.RoundedImageView
 import java.io.IOException
+import android.R.attr.data
+import android.support.v4.app.NotificationCompat.getExtras
+
+
 
 class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActivity {
 
+    private val LOG_TAG = "PersonalDataActivity"
     private val GALLERY_IMAGE = 12323
     private val CAMERA_CODE = 9
     private lateinit var name: EditText
@@ -72,6 +78,13 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                     }
                 }
             }
+            CAMERA_CODE -> {
+                if (resultCode == Activity.RESULT_OK) {
+//                    val thumbnailBitmap = data!!.extras.get("data") as Bitmap
+//                    avatar.setImageBitmap(thumbnailBitmap)
+                }
+
+            }
         }
 
     }
@@ -83,6 +96,15 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             CAMERA_CODE -> {
                 cameraIsPermist = (grantResults.isNotEmpty() && grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED)
+
+                Log.d(LOG_TAG, cameraIsPermist.toString())
+                if (cameraIsPermist) {
+                    startActivityForResult(presenterPersonalData.getPhotoFromCamera(this),
+                            CAMERA_CODE)
+                } else {
+                    Toast.makeText(this,"Permission denied", Toast.LENGTH_LONG).show()
+                }
+
                 return
             }
 
