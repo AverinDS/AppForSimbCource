@@ -33,7 +33,7 @@
     <!--ProfileActivity-->
     <dimen name="height_of_image_profile">88dp</dimen>
     <dimen name="height_of_layout_exit">56dp</dimen>
-    <dimen name="weight_of_image_profile">88dp</dimen>
+    <dimen name="width_of_image_profile">88dp</dimen>
 
     <dimen name="margin_top_of_image_profile">24dp</dimen>
     <dimen name="margin_top_ico_image">16dp</dimen>

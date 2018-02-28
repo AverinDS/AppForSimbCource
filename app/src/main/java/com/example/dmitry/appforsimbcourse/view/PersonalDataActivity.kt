@@ -3,6 +3,7 @@ package com.example.dmitry.appforsimbcourse.view
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import com.example.dmitry.appforsimbcourse.R
+import com.example.dmitry.appforsimbcourse.helper.ScalingImage
 import com.example.dmitry.appforsimbcourse.interfaces.IMyActivity
 import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterPersonalData
@@ -156,7 +158,10 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     private fun setAvatar(selectedImage: Uri) {
         val bitmap: Bitmap
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImage)
+            val scale = ScalingImage()
+            bitmap = scale.scaleImage(this, selectedImage,
+                    resources.getDimension(R.dimen.width_of_image_profile).toInt(),
+                    resources.getDimension(R.dimen.height_of_image_profile).toInt())
             avatar.setImageBitmap(bitmap)
         } catch (ex: IOException) {
             ex.stackTrace

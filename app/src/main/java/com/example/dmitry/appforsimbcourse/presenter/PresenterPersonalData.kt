@@ -17,6 +17,7 @@ import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
+import android.util.Log
 import com.example.dmitry.appforsimbcourse.helper.Permissons
 import java.io.File
 import java.io.IOException
@@ -77,6 +78,8 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+        Log.d(LOG_TAG, photoFile.absolutePath)
 
         return Pair(intent, photoUri)
     }
