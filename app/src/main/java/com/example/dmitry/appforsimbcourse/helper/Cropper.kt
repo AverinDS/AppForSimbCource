@@ -10,10 +10,6 @@ import com.theartofdev.edmodo.cropper.CropImageView
  */
 class Cropper {
     fun cropImage(activity: Activity, imageUri:Uri) {
-//        CropImage.activity()
-//                .setGuidelines(CropImageView.Guidelines.ON)
-//                .start(activity)
-
 // start cropping activity for pre-acquired image saved on the device
         CropImage.activity(imageUri)
                 .start(activity)

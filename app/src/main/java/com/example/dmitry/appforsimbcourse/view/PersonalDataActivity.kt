@@ -32,6 +32,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     private lateinit var phone: EditText
     private lateinit var email: EditText
     private lateinit var btnSave: Button
+    private lateinit var nickname: TextView
     private lateinit var changePhoto: TextView
     private lateinit var avatar: RoundedImageView
     private lateinit var uriImageCamera: Uri
@@ -50,6 +51,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         avatar = findViewById(R.id.actPersonalDataAvatar)
         btnSave = findViewById(R.id.actPersonalDataBtnSave)
         changePhoto = findViewById(R.id.actPersonalDataChangePhoto)
+        nickname = findViewById(R.id.actPersonalDataFI)
 
         presenterPersonalData.getUsersInfo()
 
@@ -69,12 +71,11 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                 if (resultCode == Activity.RESULT_OK) {
                     selectedImageGallery = data!!.data
                     presenterPersonalData.cropImage(this,selectedImageGallery)
-//                    setAvatar(selectedImageGallery)
                 }
             }
             CAMERA_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    setAvatar(uriImageCamera)
+                    presenterPersonalData.cropImage(this, uriImageCamera)
                 }
 
             }
@@ -82,9 +83,8 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     setAvatar(result.uri)
-                    val resultUri = result.uri
                 } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    val error = result.error
+                    //нужно ли обрабатывать?
                 }
             }
         }
@@ -125,6 +125,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     }
 
     override fun updateUI(appUser: AppUser) {
+        nickname.text = appUser.name
         name.text.insert(0, appUser.name)
         email.text.insert(0, appUser.email)
         phone.text.insert(0, appUser.phone)

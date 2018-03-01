@@ -24,10 +24,11 @@
                 android:layout_marginTop="@dimen/margin_top_of_image_profile"
                 android:background="@drawable/default_photo"
 
-                android:scaleType="fitXY"
+
 
                 app:riv_mutate_background="true"
                 app:riv_oval="true"
+
                 app:riv_tile_mode="repeat" />
 
             <TextView
@@ -36,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_top_fio_field"
-                android:text="Михаил Дерябин"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/font_size_fio" />
 
