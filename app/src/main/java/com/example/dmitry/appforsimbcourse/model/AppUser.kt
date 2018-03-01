@@ -13,15 +13,14 @@ class AppUser {
     lateinit var email: String
     lateinit var phone: String
     lateinit var name: String
-    lateinit var avatarLink: Uri
+
 
     constructor() {}
 
-    constructor(_email: String, _phone: String, _name: String, _avatarLink: Uri) {
+    constructor(_email: String, _phone: String, _name: String) {
         email = _email
         phone = _phone
         name = _name
-        avatarLink = _avatarLink
     }
 
 }

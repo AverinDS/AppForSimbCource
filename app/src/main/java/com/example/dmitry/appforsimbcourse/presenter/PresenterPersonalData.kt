@@ -2,6 +2,7 @@ package com.example.dmitry.appforsimbcourse.presenter
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.widget.EditText
@@ -50,8 +51,8 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         formatWatcher.installOn(editText)
     }
 
-    fun updateDataServer(email: String, phone: String, name: String, url:Uri) {
-        dbHelper.addNewInDB(AppUser(email, phone, name, url))
+    fun updateDataServer(email: String, phone: String, name: String) {
+        dbHelper.addNewInDB(AppUser(email, phone, name))
     }
 
     fun getUsersInfo() {
@@ -67,13 +68,13 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         ContextCompat.startActivity(parent, intent, null)
     }
 
-    fun getIntentOnImageFromGallery():Intent {
+    fun getIntentOnImageFromGallery(): Intent {
         val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.type = ("image/*")
         return intent
     }
 
-    fun getIntentUriForCamera(activity: Activity):Pair<Intent, Uri> {
+    fun getIntentUriForCamera(activity: Activity): Pair<Intent, Uri> {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         val photoFile = createImageFile(activity)
         val photoUri = FileProvider.getUriForFile(activity, AUTHORITIES_FILEPROVIDER, photoFile)
@@ -86,34 +87,43 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         return Pair(intent, photoUri)
     }
 
-    fun getCameraPermission(activity:Activity, codeCamera:Int) {
+    fun getCameraPermission(activity: Activity, codeCamera: Int) {
         val perm = Permissons()
-        perm.requestCameraPermission(activity,codeCamera)
+        perm.requestCameraPermission(activity, codeCamera)
     }
 
-    fun cropImage(activity:Activity, uri: Uri) {
+    fun cropImage(activity: Activity, uri: Uri) {
         val cropper = Cropper()
-        cropper.cropImage(activity,uri)
+        cropper.cropImage(activity, uri)
     }
 
 
     fun uploadPhoto(avatar: ImageView) {
-        dbHelper.saveImageToDatabase(avatar, this)
+        dbHelper.saveImageToDatabase(avatar)
     }
 
-    override fun updateUrlPhoto(url: Uri) {
-        activity.urlPhotoSuccess(url)
+
+    override fun onDownloadPhoto(bytes: ByteArray) {
+        activity.onDownloadPhoto(BitmapFactory.decodeByteArray(bytes, 0,
+                bytes.size))
+    }
+
+    override fun onFailureDownloadPhoto(message: String) {
+        activity.onFailureDownloadPhoto(message)
+    }
+
+    fun downloadPhoto() {
+        dbHelper.downloadImageFromDatabase(this)
     }
 
     @Throws(IOException::class)
-    private fun createImageFile(activity:Activity): File {
+    private fun createImageFile(activity: Activity): File {
         // Create an image file name
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
         val storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val image = File.createTempFile(imageFileName, ".jpg", storageDir )
+        val image = File.createTempFile(imageFileName, ".jpg", storageDir)
         return image
     }
-
 
 }

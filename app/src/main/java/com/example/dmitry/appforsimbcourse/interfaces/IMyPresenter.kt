@@ -8,5 +8,6 @@ import com.example.dmitry.appforsimbcourse.model.AppUser
  */
 interface IMyPresenter {
     fun updateUI(appUser: AppUser) {}
-    fun updateUrlPhoto(url: Uri) {}
+    fun onDownloadPhoto(bytes: ByteArray)
+    fun onFailureDownloadPhoto(message: String)
 }

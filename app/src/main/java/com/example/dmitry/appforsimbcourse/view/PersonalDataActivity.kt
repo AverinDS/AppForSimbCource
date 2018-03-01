@@ -60,6 +60,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         changePhoto.setOnClickListener { v -> changePhoto(v) }
 
         presenterPersonalData.setMaskPhone(phone)
+        presenterPersonalData.downloadPhoto()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -117,7 +118,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         if (name.text.toString().isNotEmpty() &&
                 presenterPersonalData.emailIsValid(email.text.toString())) {
             presenterPersonalData.updateDataServer(email.text.toString(), phone.text.toString(),
-                    name.text.toString(), urlImage)
+                    name.text.toString())
             presenterPersonalData.startProfileActivity(this)
         } else {
             Toast.makeText(this, "Неправильно введенные данные", Toast.LENGTH_SHORT)
@@ -130,7 +131,6 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         name.text.insert(0, appUser.name)
         email.text.insert(0, appUser.email)
         phone.text.insert(0, appUser.phone)
-        //тут загрузка из бд
     }
 
     private fun changePhoto(view: View) {
@@ -171,8 +171,9 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
 
     private fun setAvatar(selectedImage: Uri) {
         val bitmap: Bitmap
+        val scale = ScalingImage()
+
         try {
-            val scale = ScalingImage()
             bitmap = scale.scaleImage(this, selectedImage,
                     resources.getDimension(R.dimen.width_of_image_profile).toInt(),
                     resources.getDimension(R.dimen.height_of_image_profile).toInt())
@@ -182,12 +183,19 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             ex.stackTrace
         }
     }
+    private fun setAvatar(bitmap: Bitmap) {
+        avatar.setImageBitmap(bitmap)
+    }
 
-    override fun urlPhotoSuccess(url: Uri) {
-        urlImage = url
+    override fun onDownloadPhoto(bitmap: Bitmap) {
+        setAvatar(bitmap)
     }
 
     private fun sendToServer() {
         presenterPersonalData.uploadPhoto(avatar)
+    }
+
+    override fun onFailureDownloadPhoto(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

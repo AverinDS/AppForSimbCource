@@ -1,5 +1,6 @@
 package com.example.dmitry.appforsimbcourse.presenter
 
+import android.net.Uri
 import com.example.dmitry.appforsimbcourse.helper.FirebaseDB
 import com.example.dmitry.appforsimbcourse.interfaces.IMyActivity
 import com.example.dmitry.appforsimbcourse.interfaces.IMyPresenter
@@ -18,5 +19,14 @@ class PresenterProfile(_activity: IMyActivity) : IMyPresenter {
 
     override fun updateUI(appUser: AppUser) {
         activity.updateUI(appUser)
+    }
+
+
+    override fun onDownloadPhoto(bytes: ByteArray) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onFailureDownloadPhoto(message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
