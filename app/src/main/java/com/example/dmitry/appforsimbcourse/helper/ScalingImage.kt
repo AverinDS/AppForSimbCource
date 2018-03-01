@@ -17,18 +17,21 @@ import java.io.InputStream
 class ScalingImage {
 
     fun scaleImage(activity: Activity, uri: Uri, reqWidth: Int, reqHeight: Int):Bitmap {
-
-        val lastSlash = uri.path.indexOfLast { c -> c == '/'}
-        var path = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES).absolutePath +
-                uri.path.substring(lastSlash)
-
+        //set options
         val options = BitmapFactory.Options()
+        var imageStream = activity.contentResolver.openInputStream(uri)
+
         options.inJustDecodeBounds = true
-        BitmapFactory.decodeFile(path, options)
+
+        BitmapFactory.decodeStream(imageStream,null, options)
 
         options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight)
         options.inJustDecodeBounds = false
-        return BitmapFactory.decodeFile(path,options)
+
+        //open stream again, because after decoding stream it has changed
+        imageStream = activity.contentResolver.openInputStream(uri)
+
+        return BitmapFactory.decodeStream(imageStream, null,options)
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
@@ -49,22 +52,5 @@ class ScalingImage {
             }
         }
         return inSampleSize
-    }
-
-    private fun getRealPath(activity: Activity,uri:Uri):String {
-        var cursor:Cursor? = null
-        try {
-            val projection = arrayOf(MediaStore.Images.Media.DATA)
-            cursor = activity.contentResolver.query(uri, projection,
-                    null,null,null)
-            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            cursor.moveToFirst()
-            return cursor.getString(columnIndex)
-        } finally {
-            if(cursor != null) {
-                cursor.close()
-            }
-
-        }
     }
 }
