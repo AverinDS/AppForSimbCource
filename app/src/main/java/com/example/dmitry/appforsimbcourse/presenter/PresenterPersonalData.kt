@@ -65,6 +65,9 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
 
     fun startProfileActivity(parent: Activity) {
         val intent = Intent(parent, ProfileActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         ContextCompat.startActivity(parent, intent, null)
     }
 

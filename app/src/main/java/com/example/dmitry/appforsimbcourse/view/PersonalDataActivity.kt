@@ -9,6 +9,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.content.ContextCompat
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -72,7 +73,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             GALLERY_IMAGE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     selectedImageGallery = data!!.data
-                    presenterPersonalData.cropImage(this,selectedImageGallery)
+                    presenterPersonalData.cropImage(this, selectedImageGallery)
                 }
             }
             CAMERA_CODE -> {
@@ -183,6 +184,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             ex.stackTrace
         }
     }
+
     private fun setAvatar(bitmap: Bitmap) {
         avatar.setImageBitmap(bitmap)
     }
@@ -198,4 +200,6 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     override fun onFailureDownloadPhoto(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
+
 }

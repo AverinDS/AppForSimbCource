@@ -24,11 +24,8 @@
                 android:layout_marginTop="@dimen/margin_top_of_image_profile"
                 android:background="@drawable/default_photo"
 
-
-
                 app:riv_mutate_background="true"
                 app:riv_oval="true"
-
                 app:riv_tile_mode="repeat" />
 
             <TextView
