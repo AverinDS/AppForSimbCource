@@ -18,6 +18,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.util.Log
+import com.example.dmitry.appforsimbcourse.helper.Cropper
 import com.example.dmitry.appforsimbcourse.helper.Permissons
 import java.io.File
 import java.io.IOException
@@ -87,6 +88,11 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
     fun getCameraPermission(activity:Activity, codeCamera:Int) {
         val perm = Permissons()
         perm.requestCameraPermission(activity,codeCamera)
+    }
+
+    fun cropImage(activity:Activity, uri: Uri) {
+        val cropper = Cropper()
+        cropper.cropImage(activity,uri)
     }
 
 

@@ -19,6 +19,7 @@ import com.example.dmitry.appforsimbcourse.interfaces.IMyActivity
 import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterPersonalData
 import com.makeramen.roundedimageview.RoundedImageView
+import com.theartofdev.edmodo.cropper.CropImage
 import java.io.IOException
 
 
@@ -67,7 +68,8 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             GALLERY_IMAGE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     selectedImageGallery = data!!.data
-                    setAvatar(selectedImageGallery)
+                    presenterPersonalData.cropImage(this,selectedImageGallery)
+//                    setAvatar(selectedImageGallery)
                 }
             }
             CAMERA_CODE -> {
@@ -75,6 +77,15 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                     setAvatar(uriImageCamera)
                 }
 
+            }
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode == Activity.RESULT_OK) {
+                    setAvatar(result.uri)
+                    val resultUri = result.uri
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    val error = result.error
+                }
             }
         }
 

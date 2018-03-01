@@ -38,9 +38,13 @@
 
         <activity android:name=".view.ProfileActivity"
             android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".view.PersonalDataActivity"
             android:theme="@style/DarkActivity" />
+
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/> <!-- optional (needed if default theme has no action bar) -->
 
     </application>
 
