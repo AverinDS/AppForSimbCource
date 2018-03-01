@@ -18,6 +18,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.util.Log
+import android.widget.ImageView
 import com.example.dmitry.appforsimbcourse.helper.Cropper
 import com.example.dmitry.appforsimbcourse.helper.Permissons
 import java.io.File
@@ -49,8 +50,8 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         formatWatcher.installOn(editText)
     }
 
-    fun updateDataServer(email: String, phone: String, name: String) {
-        dbHelper.addNewInDB(AppUser(email, phone, name))
+    fun updateDataServer(email: String, phone: String, name: String, url:Uri) {
+        dbHelper.addNewInDB(AppUser(email, phone, name, url))
     }
 
     fun getUsersInfo() {
@@ -95,6 +96,14 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
         cropper.cropImage(activity,uri)
     }
 
+
+    fun uploadPhoto(avatar: ImageView) {
+        dbHelper.saveImageToDatabase(avatar, this)
+    }
+
+    override fun updateUrlPhoto(url: Uri) {
+        activity.urlPhotoSuccess(url)
+    }
 
     @Throws(IOException::class)
     private fun createImageFile(activity:Activity): File {

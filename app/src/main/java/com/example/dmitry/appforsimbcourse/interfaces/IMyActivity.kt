@@ -1,5 +1,6 @@
 package com.example.dmitry.appforsimbcourse.interfaces
 
+import android.net.Uri
 import com.example.dmitry.appforsimbcourse.model.AppUser
 
 /**
@@ -7,4 +8,5 @@ import com.example.dmitry.appforsimbcourse.model.AppUser
  */
 interface IMyActivity {
     fun updateUI(appUser: AppUser) {}
+    fun urlPhotoSuccess(url: Uri) {}
 }

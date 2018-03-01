@@ -36,6 +36,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
     private lateinit var changePhoto: TextView
     private lateinit var avatar: RoundedImageView
     private lateinit var uriImageCamera: Uri
+    private lateinit var urlImage: Uri
 
     private val presenterPersonalData: PresenterPersonalData = PresenterPersonalData(this)
 
@@ -116,7 +117,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         if (name.text.toString().isNotEmpty() &&
                 presenterPersonalData.emailIsValid(email.text.toString())) {
             presenterPersonalData.updateDataServer(email.text.toString(), phone.text.toString(),
-                    name.text.toString())
+                    name.text.toString(), urlImage)
             presenterPersonalData.startProfileActivity(this)
         } else {
             Toast.makeText(this, "Неправильно введенные данные", Toast.LENGTH_SHORT)
@@ -129,6 +130,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
         name.text.insert(0, appUser.name)
         email.text.insert(0, appUser.email)
         phone.text.insert(0, appUser.phone)
+        //тут загрузка из бд
     }
 
     private fun changePhoto(view: View) {
@@ -175,11 +177,17 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
                     resources.getDimension(R.dimen.width_of_image_profile).toInt(),
                     resources.getDimension(R.dimen.height_of_image_profile).toInt())
             avatar.setImageBitmap(bitmap)
+            sendToServer()
         } catch (ex: IOException) {
             ex.stackTrace
         }
-
     }
 
+    override fun urlPhotoSuccess(url: Uri) {
+        urlImage = url
+    }
 
+    private fun sendToServer() {
+        presenterPersonalData.uploadPhoto(avatar)
+    }
 }
