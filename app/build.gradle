@@ -15,7 +15,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        // лучше указывать последние версии sdk: https://www.androidpolice.com/2017/12/19/play-store-require-new-updated-apps-target-recent-api-levels-distribute-native-apps-64-bit-support/
     }
     buildTypes {
         release {
@@ -28,20 +27,25 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
     implementation "com.android.support:appcompat-v7:$support_lib_version"
+    implementation "com.android.support:customtabs:$support_lib_version"
+    implementation "com.android.support:design:$support_lib_version"
+    implementation "com.android.support:cardview-v7:$support_lib_version"
     implementation "com.android.support:support-media-compat:$support_lib_version"
     implementation "com.android.support:support-v4:$support_lib_version"
 
+    implementation "com.google.firebase:firebase-auth:$gs_version"
+    implementation "com.google.firebase:firebase-core:$gs_version"
+    implementation "com.google.firebase:firebase-storage:$gs_version"
 
-    compile "ru.tinkoff.decoro:decoro:1.1.1"
-    compile 'com.makeramen:roundedimageview:2.3.0'
-    compile 'com.google.firebase:firebase-auth:11.8.0'
-    compile 'com.google.firebase:firebase-core:11.8.0'
-    implementation 'com.firebaseui:firebase-ui-auth:3.2.1'
-    implementation 'com.firebaseui:firebase-ui-database:3.2.1'
-    compile 'com.google.firebase:firebase-storage:11.8.0'
-    compile 'com.theartofdev.edmodo:android-image-cropper:2.5.+'
+    implementation "ru.tinkoff.decoro:decoro:1.1.1"
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.firebaseui:firebase-ui-auth:3.2.2'
+    implementation 'com.firebaseui:firebase-ui-database:3.2.2'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0'
 
-
+    //лучше подключать зависимости через implementation https://stackoverflow.com/questions/44493378/whats-the-difference-between-implementation-and-compile-in-gradle
+    //лучше при импорте зависимостей явно указывать версию (без .+ - хотя иногда авторы пишут именно так), иначе студия каждый раз при сборке проекта будет проверять репозиторий на наличие новых версий, что требует дополнительного времени
 }
 apply plugin: 'com.google.gms.google-services'
