@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignInOrUpActivity : AppCompatActivity() {
 
-    private val minLengthPassword: Int = 8
+    private val minLengthPassword: Int = 8 //лучше выносить как константу
     private lateinit var mAuth: FirebaseAuth
     private lateinit var buttonSignIn: Button
     private lateinit var buttonSignUp: Button

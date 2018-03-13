@@ -96,8 +96,7 @@ class PresenterPersonalData(_activity: IMyActivity) : IMyPresenter {
     }
 
     fun cropImage(activity: Activity, uri: Uri) {
-        val cropper = Cropper()
-        cropper.cropImage(activity, uri)
+        Cropper.cropImage(activity, uri)
     }
 
 

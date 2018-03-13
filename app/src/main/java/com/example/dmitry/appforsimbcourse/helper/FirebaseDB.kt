@@ -3,8 +3,8 @@ package com.example.dmitry.appforsimbcourse.helper
 import android.graphics.Bitmap
 import android.util.Log
 import android.widget.ImageView
-import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.interfaces.IMyPresenter
+import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +19,11 @@ import java.io.ByteArrayOutputStream
  * Created by dmitry on 23.02.18.
  */
 class FirebaseDB {
+
+    companion object {
+        private const val ONE_MEGABYTE = 1_048_576L
+    }
+
     private val LOG_TAG = "FirebaseDB"
 
     private val mDatabase: DatabaseReference = FirebaseDatabase.getInstance().reference
@@ -26,7 +31,8 @@ class FirebaseDB {
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
     private val storageRef: StorageReference = storage.reference
     private val refToImage: StorageReference = storageRef.child(userFirebase.uid)
-    private val oneMegabyte: Long = 1024 * 1024
+    // не обязатель каждый раз у переменных явно указывать тип
+    // статичные значения можно вынести в константы
 
     fun addNewInDB(user: AppUser) {
         mDatabase.child("users").child(userFirebase.uid).setValue(user)
@@ -36,12 +42,14 @@ class FirebaseDB {
         mDatabase.child("users").child(userFirebase.uid)
                 .addListenerForSingleValueEvent(
                         object : ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot?) {
-                                val appUser: AppUser = dataSnapshot!!.getValue(AppUser::class.java)!!
-                                presenter.updateUI(appUser)
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                dataSnapshot.getValue(AppUser::class.java)?.let {
+                                    presenter.updateUI(it)
+                                }
+                                //!! лучше использовать когда на 100% уверен что там не null. В данном случае он тут был возможен, потому иногда получали NPE
                             }
 
-                            override fun onCancelled(p0: DatabaseError?) {}
+                            override fun onCancelled(p0: DatabaseError?) = Unit
                         }
                 )
     }
@@ -49,7 +57,7 @@ class FirebaseDB {
     fun saveImageToDatabase(image: ImageView) {
         val bitmap: Bitmap
         val stream = ByteArrayOutputStream()
-        val mass: ByteArray
+        val mass: ByteArray //сложно понять что лежит в этих переменных по их названию
         val uploadTask: UploadTask
 
         image.isDrawingCacheEnabled = true
@@ -70,11 +78,15 @@ class FirebaseDB {
     fun downloadImageFromDatabase(presenter: IMyPresenter) {
         val islandRef = storageRef.child(userFirebase.uid)
 
-        islandRef.getBytes(oneMegabyte)
+        islandRef.getBytes(ONE_MEGABYTE)
+                .addOnSuccessListener {
+                    presenter.onDownloadPhoto(it)
+                }
                 .addOnFailureListener {
                     OnFailureListener { presenter.onFailureDownloadPhoto(it.message!!) }
                 }
-                .addOnCompleteListener { array -> presenter.onDownloadPhoto(array.result) }
+        //результат лучше называть либо осознанно либо не называть вообще (возможно в случае с одним параметром)
+        //здесь крашится с Object does not exist at location. Возможно изза нового пользователя?
     }
 
 }
