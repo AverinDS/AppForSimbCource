@@ -11,6 +11,7 @@ import com.example.dmitry.appforsimbcourse.R
 import com.example.dmitry.appforsimbcourse.interfaces.IMyActivity
 import com.example.dmitry.appforsimbcourse.model.AppUser
 import com.example.dmitry.appforsimbcourse.presenter.PresenterProfile
+import kotlinx.android.synthetic.main.activity_profile.*
 
 
 class ProfileActivity : AppCompatActivity(), IMyActivity {
@@ -35,6 +36,9 @@ class ProfileActivity : AppCompatActivity(), IMyActivity {
         exitText = findViewById(R.id.actProfileExitText)
         edit = findViewById(R.id.actProfileEdit)
         avatar = findViewById(R.id.actProfileAvatar)
+
+        //ко вьюшкам можно обращаться без findviewbyid если применен kotlin-extensions
+//        actProfileEmail.text = "hello world"
 
 
         exitText.setOnClickListener{v->finish()}

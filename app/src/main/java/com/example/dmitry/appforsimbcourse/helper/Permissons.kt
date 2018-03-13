@@ -19,12 +19,14 @@ class Permissons {
             // show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
                             Manifest.permission.CAMERA)) {
-                Toast.makeText(activity,"Камера нужна для того, чтобы сделать аватар",
+                Toast.makeText(activity,"Камера нужна для того, чтобы сделать аватар", //строки лучше выносить в ресурсы strings.xml
                         Toast.LENGTH_SHORT).show()
+                //функцию по показу тоста лучше вынести в отдельный класс типа ViewUtils
             } else {
                 ActivityCompat.requestPermissions(activity,
                         arrayOf(Manifest.permission.CAMERA),
                         codeCamera)
+                //этот код дублируется, что тоже не очень хорошо. Читай про принципы SOLID, DRY, KISS
             }
         } else {
             ActivityCompat.requestPermissions(activity,

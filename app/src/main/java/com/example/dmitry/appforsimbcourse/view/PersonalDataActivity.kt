@@ -155,6 +155,7 @@ class PersonalDataActivity : AppCompatActivity(), View.OnClickListener, IMyActiv
             R.id.menuGallery -> {
                 startActivityForResult(presenterPersonalData.getIntentOnImageFromGallery(),
                         GALLERY_IMAGE)
+                //в таких местах лучше через packagemanager проверять есть ли у пользователя приложение которое сможет открыть этот интент
                 true
             }
             else -> {
